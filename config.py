@@ -1,4 +1,5 @@
-LABELS = ['PNEUMONIA', 'NORMAL']
+CLASS_LABELS = ['PNEUMONIA', 'NORMAL']
+DATASET_LABELS = ['Train', 'Validation', 'Test']
 IMG_SIZE = 150
 
 DATA_DIR = './data'
