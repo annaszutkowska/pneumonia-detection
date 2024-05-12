@@ -1,4 +1,5 @@
-CLASS_LABELS = ['PNEUMONIA', 'NORMAL']
+CLASS_LABELS = ['Pneumonia', 'Normal']
+LABELS_DICT = {'Pneumonia': 0, 'Normal': 1}
 DATASET_LABELS = ['Train', 'Validation', 'Test']
 IMG_SIZE = 150
 
