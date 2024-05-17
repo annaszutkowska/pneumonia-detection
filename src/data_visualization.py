@@ -2,6 +2,7 @@ from typing import List, Dict
 
 import numpy as np
 import seaborn as sns
+from keras.src.callbacks import History
 from matplotlib import pyplot as plt
 from tensorflow.python.ops.confusion_matrix import confusion_matrix
 
@@ -60,6 +61,7 @@ def plot_confusion_matrix(y_true: np.ndarray, y_pred: np.ndarray, classes: np.nd
                           normalize: bool = False, cmap: plt.cm = plt.cm.Blues) -> None:
     title = 'Normalized confusion matrix' if normalize else 'Confusion matrix, without normalization'
     cm = confusion_matrix(y_true, y_pred)
+    cm = cm.numpy()
     classes = classes[np.unique(y_true)]
     if normalize:
         cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
@@ -73,11 +75,11 @@ def plot_confusion_matrix(y_true: np.ndarray, y_pred: np.ndarray, classes: np.nd
     plt.show()
 
 
-def plot_training_history(history: Dict[str, List[float]]) -> None:
-    acc = history['accuracy']
-    val_acc = history['val_accuracy']
-    loss = history['loss']
-    val_loss = history['val_loss']
+def plot_training_history(history: History) -> None:
+    acc = history.history['accuracy']
+    val_acc = history.history['val_accuracy']
+    loss = history.history['loss']
+    val_loss = history.history['val_loss']
     epochs = range(1, len(acc) + 1)
 
     plt.figure(figsize=(12, 6))
